@@ -17,7 +17,6 @@
 				}
 			});
 			const result = await response.json()
-			console.log(result)
 			movies = [...movies, ...result]
 			pageNumber+=1;
 		}

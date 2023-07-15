@@ -9,6 +9,5 @@ export async function load({ fetch, params }) {
         }
       });
     const item :Response = await res.json();
-    console.log(item);
     return { item };
 }

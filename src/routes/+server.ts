@@ -11,7 +11,6 @@ export const POST: RequestHandler = async ( { request } ) => {
         }
       });
     const item = await res.json();
-    console.log(item)
     const result = await item.results;
     return json(result);
 };

@@ -6,7 +6,6 @@
 
     export let data
     let currentImage : number
-    console.log(data.result)
 </script>
 
 <main>

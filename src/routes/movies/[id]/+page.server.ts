@@ -28,7 +28,6 @@ export async function load({ fetch, params }) {
     const recomend = await recomendReq.json()
     const watch = await watchReq.json()
     const id = params.id
-    console.log(watch)
     return { detail, recomend, watch, id };
 
   }
