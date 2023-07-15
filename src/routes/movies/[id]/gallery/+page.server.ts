@@ -1,9 +1,6 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ( { request } ) => {
-    const { pageNumber } = await request.json();
-    const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=' + pageNumber, {
+export async function load({ fetch , params }) {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/images`, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -12,6 +9,6 @@ export const POST: RequestHandler = async ( { request } ) => {
       });
     const item = await res.json();
     console.log(item)
-    const result = await item.results;
-    return json(result);
-};
+    const result = await item.backdrops;
+    return { result };
+}

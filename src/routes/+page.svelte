@@ -7,17 +7,20 @@
 	let check = false
 	let pageNumber = 2;
 	async function loadNextPage() {
-		const response = await fetch('/', {
-            method: 'POST',
-            body: JSON.stringify({ pageNumber }),
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
-		const result = await response.json()
-		console.log(result)
-		movies = [...movies, ...result]
-		pageNumber+=1;
+		if ( pageNumber <= 39120){
+
+			const response = await fetch('/', {
+				method: 'POST',
+				body: JSON.stringify({ pageNumber }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			});
+			const result = await response.json()
+			console.log(result)
+			movies = [...movies, ...result]
+			pageNumber+=1;
+		}
 	}
 	function actionWhenInViewport(e: Element) {
   const observer = new IntersectionObserver(entries => {
@@ -33,12 +36,12 @@
 	<title>Movie Base</title>
 </svelte:head>
 
-<div in:slide={{ duration: 500, delay: 500 }} out:slide={{ duration: 500 }}>
+<main in:slide={{ duration: 500, delay: 500 }} out:slide={{ duration: 500 }}>
 	<SearchMovies />
 	<PopularMovies movies={movies} />
 	<div class="load-more" use:actionWhenInViewport>
 	</div>
-</div>
+</main>
 
 <style>
 	.load-more {
@@ -46,5 +49,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	main {
+		min-height: 101vh;
 	}
 </style>

@@ -1,9 +1,9 @@
 <script>
 	// @ts-nocheck
-
 	export let data;
 	import { slide } from 'svelte/transition';
 	import MovieCard from '../../../components/MovieCard.svelte';
+	import VideoGallery from '../../../components/VideoGallery.svelte';
 	let stars = Array(Math.round(data.detail.vote_average)).fill('★');
 	let noStars = Array(10 - Math.round(data.detail.vote_average)).fill('☆')
 </script>
@@ -14,12 +14,15 @@
 	
 <div class="movie-details" in:slide={{ duration: 500, delay: 500 }} out:slide={{ duration: 500 }}>
 	{#if data.detail.backdrop_path}
-	<div class="img-container">
-		<img
-		src={'https://image.tmdb.org/t/p/original/' + data.detail.backdrop_path}
-		alt={data.detail.title}
-		/>
-	</div>
+	<a href={data.id + '/gallery'}>
+
+		<div class="img-container">
+			<img
+			src={'https://image.tmdb.org/t/p/original/' + data.detail.backdrop_path}
+			alt={data.detail.title}
+			/>
+		</div>
+	</a>
 	{/if}
 	<div class="text-container">
 		<h1>{data.detail.title}</h1>
@@ -34,6 +37,10 @@
 			<span>Rating: </span>{stars.join('') + noStars.join('')} <br />
 			<span>Runtime: </span>{data.detail.runtime} min.
 		</p>
+	</div>
+	<h3>Videos:</h3>
+	<div class="videos">
+		<VideoGallery videos={data.watch.results}/>
 	</div>
 	{#if data.recomend.results.length !== 0}
 	<h3>After watching {data.detail.title}: </h3>
