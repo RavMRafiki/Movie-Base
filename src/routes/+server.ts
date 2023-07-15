@@ -1,6 +1,10 @@
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
-export async function load({ fetch }) {
-    const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
+export const POST: RequestHandler = async ( { request } ) => {
+    const { pageNumber } = await request.json();
+    console.log(pageNumber)
+    const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=' + pageNumber, {
         method: 'GET',
         headers: {
           accept: 'application/json',
@@ -9,5 +13,5 @@ export async function load({ fetch }) {
       });
     const item = await res.json();
     const result = await item.results;
-    return { result };
-}
+    return json(result);
+};

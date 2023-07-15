@@ -1,11 +1,50 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition';
 	import PopularMovies from '../components/PopularMovies.svelte';
 	import SearchMovies from '../components/SearchMovies.svelte';
 	export let data;
-	import { slide } from 'svelte/transition';
+	let movies = data.result;
+	let check = false
+	let pageNumber = 2;
+	async function loadNextPage() {
+		const response = await fetch('/', {
+            method: 'POST',
+            body: JSON.stringify({ pageNumber }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+		const result = await response.json()
+		console.log(result)
+		movies = [...movies, ...result]
+		pageNumber+=1;
+	}
+	function actionWhenInViewport(e: Element) {
+  const observer = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting) {
+      loadNextPage()
+    }
+  },);
+
+  observer.observe(e);
+}
 </script>
+<svelte:head>
+	<title>Movie Base</title>
+</svelte:head>
 
 <div in:slide={{ duration: 500, delay: 500 }} out:slide={{ duration: 500 }}>
 	<SearchMovies />
-	<PopularMovies movies={data.result} />
+	<PopularMovies movies={movies} />
+	<div class="load-more" use:actionWhenInViewport>
+	</div>
 </div>
+
+<style>
+	.load-more {
+		margin: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

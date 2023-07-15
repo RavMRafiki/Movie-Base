@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { LayoutData } from './$types';
+	// import type { LayoutData } from './$types';
 	import Nav from '../components/Nav.svelte';
-	export let data: LayoutData;
+	// export let data: LayoutData;
 </script>
 
 <svelte:head>

@@ -5,11 +5,17 @@
 	 * @type {{ title: text; id: number }}
 	 */
 	export let movie;
+
+	console.log(movie.poster_path)
 </script>
 
 <div class="movie-card">
-	<a data-sveltekit-noscroll data-sveltekit-preload-data="hover" href={'/movies/' + movie.id}>
-		<img src={'https://image.tmdb.org/t/p/w200' + movie.poster_path} alt={movie.title} />
+	<a data-sveltekit-preload-data="hover" href={'/movies/' + movie.id} >
+		{#if movie.poster_path}
+			<img src={'https://image.tmdb.org/t/p/w200' + movie.poster_path} alt={movie.title} />
+			{:else}
+			<img src={'https://i.stack.imgur.com/aGiVE.png'} alt={movie.title} />
+		{/if}
 	</a>
 	<div class="description">
 		<h2>{movie.title}</h2>
