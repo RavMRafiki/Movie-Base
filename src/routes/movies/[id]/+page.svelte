@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	export let data;
 	import { slide } from 'svelte/transition';
 	import MovieCard from '../../../components/MovieCard.svelte';
@@ -38,7 +37,6 @@
 			<span>Runtime: </span>{data.detail.runtime} min.
 		</p>
 	</div>
-	<h3>Videos:</h3>
 	<div class="videos">
 		<VideoGallery videos={data.watch.results}/>
 	</div>

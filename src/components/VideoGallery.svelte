@@ -12,10 +12,11 @@
     }
     let toRight = 1;
 </script>
+{#if videos.length !== 0 }
 <div class="video">
 {#key currentVideo}
     
-<iframe width="420" height="315" title={videos[currentVideo].name} in:fly={{ delay: 400, x: 200*toRight*-1}} out:fly={{x: 200*toRight}}
+<iframe width="420" height="315" title={videos[currentVideo]=== undefined ? 'Youtube Video' : videos[currentVideo].name} in:fly={{ delay: 400, x: 200*toRight*-1}} out:fly={{x: 200*toRight}}
 src={`https://www.youtube.com/embed/${videos[currentVideo].key}`}>
 </iframe>
 {/key}
@@ -24,6 +25,7 @@ src={`https://www.youtube.com/embed/${videos[currentVideo].key}`}>
     <button on:click={()=>{currentVideo--; toRight=1}}>ᐸ</button>
     <button on:click={()=>{currentVideo++; toRight=-1}}>ᐳ</button>
 </div>
+{/if}
 
 <style>
     .buttons {
