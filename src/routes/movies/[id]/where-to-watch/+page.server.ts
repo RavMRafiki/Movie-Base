@@ -1,7 +1,5 @@
-import type { PageLoad } from './$types';
-
 export async function load({ fetch, params }) {
-    const res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${params.id}&include_adult=false&language=en-US&page=1`, {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/watch/providers`, {
         method: 'GET',
         headers: {
           accept: 'application/json',

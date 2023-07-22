@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit'
 
 export async function load({ fetch, params }) {
   const [detailReq, recomendReq, watchReq] = await Promise.all([
@@ -31,4 +32,5 @@ export async function load({ fetch, params }) {
     return { detail, recomend, watch, id };
 
   }
+  return error
 }

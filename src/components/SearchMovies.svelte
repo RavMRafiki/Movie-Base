@@ -38,6 +38,7 @@
 </form>
 
 <style>
+	
 	.search {
 		position: relative;
 		width: 30%;
@@ -67,7 +68,7 @@
 		outline: none;
 		color: rgb(255, 255, 255);
 		padding: 0.5rem 0.1rem;
-		transition: background 0.75s ease-out;
+		transition: 0.75s ease-out;
 		font-weight: bold;
 		background: rgb(63, 63, 63);
 		border-radius: 10px;

@@ -35,7 +35,10 @@
 <div class="searched-movies" in:slide={{ duration: 500, delay: 500 }} out:slide={{ duration: 500 }}>
 	{#each movies as movie}
 		<MovieCard {movie} />
+	{:else}
+		<p>Nothing was found</p>
 	{/each}
+
 </div>
 <div class="load-more" use:actionWhenInViewport>
 </div>
@@ -46,5 +49,8 @@
 		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 		column-gap: 1rem;
 		row-gap: 2rem;
+	}
+	p {
+		text-align: center;
 	}
 </style>
