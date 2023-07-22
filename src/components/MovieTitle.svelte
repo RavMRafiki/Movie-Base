@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
+
     export let title : string;
     export let altTitle : string;
     let showAltTitle = false;
@@ -7,8 +9,7 @@
 <h1 on:mouseenter={()=>{showAltTitle = true}} on:mouseleave={()=>{showAltTitle = false}}>{title}</h1>
 
 {#if altTitle !== '' && showAltTitle}
-<p>
-
+<p transition:fade={{duration: 200}}>
     {altTitle}
 </p>
 {/if}

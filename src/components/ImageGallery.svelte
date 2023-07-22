@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fly } from "svelte/transition";
-    export let images : IImage[]
-    type IImage = { file_path : string}
+	import type { IImage } from "../types/IImage";
+    export let images : IImage[];
 
     export let currentImage = 0;
     $ : {

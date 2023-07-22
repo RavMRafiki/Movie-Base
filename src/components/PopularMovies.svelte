@@ -1,7 +1,7 @@
 <script lang="ts">
+	import type { IMovie } from '../types/IMovie';
 	import MovieCard from './MovieCard.svelte';
-	export let movies: any;
-	import { slide } from 'svelte/transition';
+	export let movies: IMovie[];
 </script>
 
 <section>

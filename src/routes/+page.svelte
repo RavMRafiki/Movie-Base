@@ -2,9 +2,9 @@
 	import { slide } from 'svelte/transition';
 	import PopularMovies from '../components/PopularMovies.svelte';
 	import SearchMovies from '../components/SearchMovies.svelte';
+	import type { IMovie } from '../types/IMovie';
 	export let data;
 	let movies = data.result;
-	// let check = false
 	let pageNumber = 2;
 	async function loadNextPage() {
 		if ( pageNumber <= 39120){
@@ -16,12 +16,12 @@
 					'content-type': 'application/json'
 				}
 			});
-			const result = await response.json()
+			const result : IMovie[] = await response.json()
 			movies = [...movies, ...result]
 			pageNumber+=1;
 		}
 	}
-	function actionWhenInViewport(e: Element) {
+	function actionWhenInViewport(e: Element):void {
 		const observer = new IntersectionObserver(entries => {
 		if(entries[0].isIntersecting) {
 			loadNextPage()

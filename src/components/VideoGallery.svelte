@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fly } from "svelte/transition";
+	import type { IVideo } from "../types/IVideo";
     export let videos : IVideo[]
-    type IVideo = { key : string , name: string}
 
     let currentVideo = 0
     $ : {
@@ -32,7 +32,6 @@ src={`https://www.youtube.com/embed/${videos[currentVideo].key}`}>
         display: flex;
         width: 100%;
         justify-content: center;
-        /* flex-direction: row; */
     }
     .buttons button {
         background-color: black;

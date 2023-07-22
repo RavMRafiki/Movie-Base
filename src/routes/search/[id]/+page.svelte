@@ -1,8 +1,8 @@
 <script lang="ts">
-	// @ts-nocheck
 	import MovieCard from '../../../components/MovieCard.svelte';
     import { slide } from 'svelte/transition';
-	export let data;
+	import type { IMovie } from '../../../types/IMovie';
+	export let data : {id: number, item: {results: IMovie[], total_pages : number}};
 	let movies = data.item.results
 	let totalpages = data.item.total_pages
 

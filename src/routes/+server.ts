@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import type { IMovie } from '../types/IMovie';
 
 export const POST: RequestHandler = async ( { request } ) => {
     const { pageNumber } = await request.json();
@@ -11,6 +12,6 @@ export const POST: RequestHandler = async ( { request } ) => {
         }
       });
     const item = await res.json();
-    const result = await item.results;
+    const result : IMovie[] = await item.results;
     return json(result);
 };

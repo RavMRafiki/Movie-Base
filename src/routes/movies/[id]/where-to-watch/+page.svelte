@@ -6,9 +6,7 @@
         fetch('https://api.geoapify.com/v1/ipinfo?apiKey=9469811e32874fb9a399d4adc248a357')
         .then(response => response.json())
         .then(data => {
-            // You can now access the location data in the "data" object
             countryCode = data.country.iso_code
-            // console.log(data.country.flag)
             countryFlag = data.country.flag
         })
     })
@@ -49,7 +47,6 @@ provider_name
 : 
 string
 }
-$: console.log(data)
 </script>
 
 <h1>You can buy here in {countryFlag}:</h1>

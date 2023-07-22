@@ -1,10 +1,8 @@
 <script lang="ts">
 	import ImageGallery from "../../../../components/ImageGallery.svelte";
+	import type { IImage } from "../../../../types/IImage";
 
-  
-    
-
-    export let data
+    export let data : {result : IImage[]}
     let currentImage : number
 </script>
 

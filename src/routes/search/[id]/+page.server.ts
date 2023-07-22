@@ -1,5 +1,8 @@
 // import type { PageLoad } from './$types';
 
+import type { IMovie } from "../../../types/IMovie";
+import type { IResponse } from "../../../types/IResponse";
+
 export async function load({ fetch, params }) {
     const res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${params.id}&include_adult=false&language=en-US&page=1`, {
         method: 'GET',
@@ -8,7 +11,7 @@ export async function load({ fetch, params }) {
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NWUzYWEwYzNhNTQyMDdmNjU3NDRkM2MxM2NkYjJjYSIsInN1YiI6IjY0OTVkNTZkZDIzNmU2MDExZTBhMjFjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PDKXSw8TifKrPUrb1dsavWFdVnzaa3HGNpj6avisIyw'
         }
       });
-    const item :Response = await res.json();
+    const item : IResponse<{results : IMovie[]}> = await res.json();
     const id = params.id
     return { item, id };
 }

@@ -1,3 +1,4 @@
+import type { IMovie } from '../types/IMovie.js';
 
 export async function load({ fetch }) {
     const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
@@ -8,6 +9,6 @@ export async function load({ fetch }) {
         }
       });
     const item = await res.json();
-    const result = await item.results;
+    const result : IMovie[] = await item.results;
     return { result };
 }

@@ -1,12 +1,7 @@
-<script>
-	// @ts-nocheck
-	
+<script lang="ts">
 	import { fade } from "svelte/transition";
-	
-	/**
-	 * @type {{ title: text; id: number, poster_path: text }}
-	 */
-	export let movie;
+	import type { IMovie } from "../types/IMovie";
+	export let movie : IMovie;
 
 </script>
 

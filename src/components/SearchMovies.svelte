@@ -1,17 +1,17 @@
-<script>
+<script lang="ts">
 	let inputValue = '';
 	let active = false;
 	import { goto } from '$app/navigation';
 	import { fly } from 'svelte/transition';
 
-	function cancelInactive() {
+	function cancelInactive():void {
 		if (inputValue) {
 			active = true;
 		} else {
 			active = false;
 		}
 	}
-	function submitSearch() {
+	function submitSearch():void {
 		goto('/search/' + inputValue);
 	}
 </script>

@@ -1,3 +1,5 @@
+import type { IImage } from '../../../../types/IImage.js';
+import type { IResponse } from '../../../../types/IResponse.js';
 
 export async function load({ fetch , params }) {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/images`, {
@@ -8,6 +10,6 @@ export async function load({ fetch , params }) {
         }
       });
     const item = await res.json();
-    const result = await item.backdrops;
+    const result : IImage[] = await item.backdrops;
     return { result };
 }
