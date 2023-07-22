@@ -9,5 +9,6 @@ export async function load({ fetch, params }) {
         }
       });
     const item :Response = await res.json();
-    return { item };
+    const id = params.id
+    return { item, id };
 }

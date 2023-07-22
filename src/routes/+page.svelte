@@ -4,7 +4,7 @@
 	import SearchMovies from '../components/SearchMovies.svelte';
 	export let data;
 	let movies = data.result;
-	let check = false
+	// let check = false
 	let pageNumber = 2;
 	async function loadNextPage() {
 		if ( pageNumber <= 39120){
@@ -22,9 +22,9 @@
 		}
 	}
 	function actionWhenInViewport(e: Element) {
-  const observer = new IntersectionObserver(entries => {
-    if(entries[0].isIntersecting) {
-      loadNextPage()
+		const observer = new IntersectionObserver(entries => {
+		if(entries[0].isIntersecting) {
+			loadNextPage()
     }
   },);
 

@@ -1,15 +1,16 @@
 <script>
 	// @ts-nocheck
-
+	
+	import { fade } from "svelte/transition";
+	
 	/**
-	 * @type {{ title: text; id: number }}
+	 * @type {{ title: text; id: number, poster_path: text }}
 	 */
 	export let movie;
 
-	console.log(movie.poster_path)
 </script>
 
-<div class="movie-card">
+<div class="movie-card" transition:fade>
 	<a data-sveltekit-preload-data="hover" href={'/movies/' + movie.id} >
 		{#if movie.poster_path}
 			<img src={'https://image.tmdb.org/t/p/w200' + movie.poster_path} alt={movie.title} />
