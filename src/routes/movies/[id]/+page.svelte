@@ -1,10 +1,13 @@
-<script>
+<script lang="ts">
 	export let data;
 	import { slide } from 'svelte/transition';
 	import MovieCard from '../../../components/MovieCard.svelte';
 	import VideoGallery from '../../../components/VideoGallery.svelte';
+	import MovieTitle from '../../../components/MovieTitle.svelte';
 	let stars = Array(Math.round(data.detail.vote_average)).fill('★');
 	let noStars = Array(10 - Math.round(data.detail.vote_average)).fill('☆')
+	let alternativeTitles: string
+	$: alternativeTitles = data.altTitle.titles.map((value : {title : string}) => value.title).join(', ')
 </script>
 <svelte:head>
 	<title>{data.detail.title} - Movie Base</title>
@@ -24,7 +27,7 @@
 	</a>
 	{/if}
 	<div class="text-container">
-		<h1>{data.detail.title}</h1>
+		<MovieTitle title={data.detail.title} altTitle={alternativeTitles}/>
 		<p>{data.detail.overview}</p>
 		<p>
 			<span>Release date: </span>
@@ -52,9 +55,6 @@
 {/key}
 
 <style>
-	h1 {
-		padding: 1rem 0rem 2rem;
-	}
 	p {
 		padding: 1rem 0rem;
 	}
